@@ -1,0 +1,10 @@
+.map-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slds-text-color_weak {
+    font-size: 0.875rem;
+    font-style: italic;
+}

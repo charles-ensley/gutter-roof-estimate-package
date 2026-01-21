@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Google Street View</masterLabel>
+    <description>Displays Google Street View panorama for the contact's address location with interactive navigation</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Contact</object>
+            </objects>
+            <property name="googleMapsApiKey" type="String" label="Google Maps API Key" description="Your Google Maps Street View Static API key. Get one at https://developers.google.com/maps/documentation/streetview/get-api-key" required="true" />
+            <property name="height" type="Integer" default="400" label="Street View Height (pixels)" description="Height of the Street View image in pixels" />
+            <property name="width" type="Integer" default="600" label="Street View Width (pixels)" description="Width of the Street View image in pixels (max 640)" />
+            <property name="heading" type="Integer" default="0" label="Camera Heading (0-360)" description="Camera heading in degrees (0=North, 90=East, 180=South, 270=West)" />
+            <property name="pitch" type="Integer" default="0" label="Camera Pitch (-90 to 90)" description="Camera pitch in degrees (0=Straight, positive=Up, negative=Down)" />
+            <property name="fov" type="Integer" default="90" label="Field of View (10-120)" description="Field of view in degrees (default 90, lower=zoomed in)" />
+            <property name="zoom" type="Integer" default="1" label="Zoom (Deprecated)" description="Deprecated - use Field of View instead" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

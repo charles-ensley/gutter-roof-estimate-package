@@ -1,0 +1,124 @@
+.floor-cards {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.floor-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.floor-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #706e6b;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.floor-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #080707;
+    line-height: 1;
+}
+
+.total-price-container {
+    background: linear-gradient(135deg, #1b96ff 0%, #0c5d9f 100%);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(27, 150, 255, 0.3);
+}
+
+.total-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+}
+
+.total-amount {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .floor-cards {
+        flex-direction: column;
+    }
+    
+    .floor-card {
+        min-width: 100%;
+    }
+    
+    .total-amount {
+        font-size: 2.5rem;
+    }
+}
+
+.price-breakdown {
+    background-color: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    padding: 1rem;
+}
+
+.breakdown-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #080707;
+    margin: 0 0 1rem 0;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f3f2f2;
+}
+
+.breakdown-item:last-child {
+    border-bottom: none;
+}
+
+.breakdown-label {
+    font-size: 0.875rem;
+    color: #3e3e3c;
+}
+
+.breakdown-amount {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #080707;
+}
+
+.breakdown-subtotal {
+    border-top: 2px solid #dddbda;
+    border-bottom: 2px solid #dddbda;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.breakdown-subtotal .breakdown-label,
+.breakdown-subtotal .breakdown-amount {
+    font-weight: 700;
+    font-size: 0.9375rem;
+}
+
+.breakdown-discount .breakdown-amount {
+    color: #2e844a;
+    font-weight: 700;
+}

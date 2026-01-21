@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Nearmap MapBrowser</masterLabel>
+    <description>Embeds Nearmap MapBrowser to display aerial imagery for the contact's address location</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Contact</object>
+            </objects>
+            <property name="height" type="Integer" default="600" label="Map Height (pixels)" description="Height of the map display in pixels (only used if Show Embedded Map is enabled)" />
+            <property name="showIframe" type="Boolean" default="false" label="Show Embedded Map" description="Enable to show an embedded map preview (may require repeated login due to browser security). Disabled by default - users can open maps in a new window instead." />
+            <property name="googleMapsApiKey" type="String" label="Google Maps API Key (Optional)" description="Optional: Add your Google Maps API key here to enable Google Geocoding as a fallback when free geocoding fails. Use the same key from your Google Street View component." />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,157 @@
+<template>
+    <lightning-card title="Nearmap MapBrowser" icon-name="custom:custom24">
+        <template if:true={error}>
+            <div class="slds-m-around_medium">
+                <div class="slds-text-color_error">
+                    <lightning-icon 
+                        icon-name="utility:error" 
+                        alternative-text="Error" 
+                        size="small" 
+                        class="slds-m-right_x-small">
+                    </lightning-icon>
+                    Error loading contact data. Please refresh the page.
+                </div>
+            </div>
+        </template>
+
+        <template if:true={contactData}>
+            <template if:true={hasAddress}>
+                <!-- Address Display and Quick Actions -->
+                <div class="slds-m-around_medium">
+                    <div class="slds-media slds-media_center">
+                        <div class="slds-media__figure">
+                            <lightning-icon 
+                                icon-name="utility:location" 
+                                alternative-text="Location" 
+                                size="medium">
+                            </lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <h3 class="slds-text-heading_small slds-m-bottom_x-small">
+                                {contactName}'s Location
+                            </h3>
+                            <p class="slds-text-body_regular slds-text-color_weak">
+                                {fullAddress}
+                            </p>
+                            <template if:true={hasCoordinates}>
+                                <p class="slds-text-body_small slds-text-color_success slds-m-top_x-small">
+                                    <lightning-icon 
+                                        icon-name="utility:check" 
+                                        alternative-text="Verified" 
+                                        size="xx-small" 
+                                        class="slds-m-right_xx-small">
+                                    </lightning-icon>
+                                    {locationInfo} (Precise location available)
+                                </p>
+                            </template>
+                            <template if:false={hasCoordinates}>
+                                <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                                    <lightning-icon 
+                                        icon-name="utility:info" 
+                                        alternative-text="Info" 
+                                        size="xx-small" 
+                                        class="slds-m-right_xx-small">
+                                    </lightning-icon>
+                                    Using address geocoding (may be less accurate)
+                                </p>
+                            </template>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-m-top_medium">
+                        <lightning-button 
+                            label="View in Nearmap" 
+                            onclick={handleOpenInNearmap}
+                            variant="brand"
+                            icon-name="utility:new_window"
+                            class="slds-m-right_x-small">
+                        </lightning-button>
+                        
+                        <lightning-button 
+                            label={geocodeButtonLabel}
+                            onclick={handleGeocodeAddress}
+                            variant={geocodeButtonVariant}
+                            icon-name="utility:location"
+                            disabled={isGeocoding}
+                            class="slds-m-right_x-small">
+                        </lightning-button>
+                        
+                        <template if:true={showIframe}>
+                            <lightning-button 
+                                label="Refresh Embedded View" 
+                                onclick={handleRefresh}
+                                variant="neutral"
+                                icon-name="utility:refresh">
+                            </lightning-button>
+                        </template>
+                    </div>
+
+                    <!-- Info Message -->
+                    <div class="slds-m-top_medium">
+                        <div class="slds-box slds-theme_shade slds-text-body_small">
+                            <lightning-icon 
+                                icon-name="utility:info" 
+                                alternative-text="Info" 
+                                size="x-small" 
+                                class="slds-m-right_x-small">
+                            </lightning-icon>
+                            <strong>Note:</strong> Due to browser security policies, you'll need to log in to Nearmap in the new window. 
+                            Your authenticated session will be maintained in that window.
+                            <template if:false={hasCoordinates}>
+                                <br/><br/>
+                                <strong>Tip:</strong> For the most accurate location, geocode this address by editing the contact and using 
+                                the "Validate Address" feature (if available), or use Data.com to populate latitude/longitude fields.
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optional Embedded View -->
+                <template if:true={showIframe}>
+                    <div class="slds-m-top_small">
+                        <div class="slds-text-align_center slds-m-bottom_x-small">
+                            <span class="slds-text-body_small slds-text-color_weak">
+                                Embedded Preview (authentication may be required)
+                            </span>
+                        </div>
+                        <div class="map-container">
+                            <iframe 
+                                src={mapUrl}
+                                style={iframeStyle}
+                                frameborder="0"
+                                allowfullscreen
+                                title="Nearmap MapBrowser">
+                            </iframe>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template if:false={hasAddress}>
+                <div class="slds-m-around_medium">
+                    <div class="slds-text-align_center">
+                        <lightning-icon 
+                            icon-name="utility:location" 
+                            alternative-text="No Address" 
+                            size="medium" 
+                            class="slds-m-bottom_small">
+                        </lightning-icon>
+                        <p class="slds-text-body_regular">{noAddressMessage}</p>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <template if:false={contactData}>
+            <template if:false={error}>
+                <div class="slds-m-around_medium">
+                    <lightning-spinner 
+                        alternative-text="Loading" 
+                        size="medium">
+                    </lightning-spinner>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>
+
